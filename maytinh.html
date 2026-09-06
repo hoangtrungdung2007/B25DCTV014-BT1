@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 2: Máy tính đơn giản</title>
+    <style>
+        .calculator {
+            width: 240px;
+            margin: 50px auto;
+            border: 2px solid #333;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        #manHinh {
+            height: 40px;
+            background-color: #eee;
+            border: 1px solid #aaa;
+            margin-bottom: 15px;
+            text-align: right;
+            line-height: 40px;
+            padding-right: 10px;
+            font-size: 22px;
+            overflow: hidden;
+        }
+        .banPhim {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 5px;
+        }
+        button {
+            height: 40px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .btn-clear {
+            grid-column: span 2;
+        }
+        .btn-bang {
+            grid-column: span 2;
+            background-color: orange;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calculator">
+        <!-- Màn hình hiển thị -->
+        <div id="manHinh">0</div>
+
+        <!-- Các nút bấm -->
+        <div class="banPhim">
+            <button class="nutClear btn-clear">Clear</button>
+            <button class="nutTinh">/</button>
+            <button class="nutTinh">*</button>
+
+            <button class="nutSo">7</button>
+            <button class="nutSo">8</button>
+            <button class="nutSo">9</button>
+            <button class="nutTinh">-</button>
+
+            <button class="nutSo">4</button>
+            <button class="nutSo">5</button>
+            <button class="nutSo">6</button>
+            <button class="nutTinh">+</button>
+
+            <button class="nutSo">1</button>
+            <button class="nutSo">2</button>
+            <button class="nutSo">3</button>
+            <button class="nutSo">0</button>
+
+            <button class="nutBang btn-bang">=</button>
+        </div>
+    </div>
+
+    <script>
+        var manHinh = document.getElementById("manHinh");
+
+        // 1. Lắng nghe click cho tất cả các nút số
+        var dsNutSo = document.querySelectorAll(".nutSo");
+        for (var i = 0; i < dsNutSo.length; i++) {
+            dsNutSo[i].addEventListener("click", function() {
+                // Nếu đang là 0 thì thay thế, ngược lại thì nối thêm chuỗi
+                if (manHinh.innerText == "0") {
+                    manHinh.innerText = this.innerText;
+                } else {
+                    manHinh.innerText = manHinh.innerText + this.innerText;
+                }
+            });
+        }
+
+        // 2. Lắng nghe click cho các nút phép tính (+, -, *, /)
+        var dsNutTinh = document.querySelectorAll(".nutTinh");
+        for (var j = 0; j < dsNutTinh.length; j++) {
+            dsNutTinh[j].addEventListener("click", function() {
+                manHinh.innerText = manHinh.innerText + this.innerText;
+            });
+        }
+        var nutClear = document.querySelector(".nutClear");
+        nutClear.addEventListener("click", function() {
+            manHinh.innerText = "0";
+        });
+        var nutBang = document.querySelector(".nutBang");
+        nutBang.addEventListener("click", function() {
+            try {
+                manHinh.innerText = eval(manHinh.innerText);
+            } catch (err) {
+                manHinh.innerText = "Lỗi";
+            }
+        });
+    </script>
+</body>
+</html>
