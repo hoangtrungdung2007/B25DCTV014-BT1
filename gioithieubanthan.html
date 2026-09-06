@@ -44,6 +44,7 @@
 
     <header>
         <h1>Trang Giới Thiệu Bản Thân</h1>
+        <p id="loiChao"></p>
     </header>
 
     <nav>
@@ -53,9 +54,25 @@
     </nav>
 
     <main>
-        <h2 id="loiChao">Xin chào!</h2>
-
-        <p>Đây là trang web cá nhân đơn giản phục vụ bài thực hành môn Lập trình Web.</p>
+        <section id="trangchu">
+            <h2>Trang chủ</h2>
+            <p>Chào mừng bạn đến với trang web cá nhân của tôi!</p>     
+            <p>Đây là trang web cá nhân đơn giản phục vụ bài thực hành môn Lập trình Web.</p>
+        </section>
+        <section id="thongtin">
+            <h2>Thông tin cá nhân</h2>
+            <p>Tên: Hoàng Trung Dũng</p>
+            <p>Ngày sinh: 06/02/2007</p>
+            <p>Sở thích: Lập trình, chơi game</p>
+            <a href="https://ptit.edu.vn/" target="_blank">Học tại Học viện Công nghệ Bưu chính Viễn thông</a>
+            <img src="https://ptit.edu.vn/wp-content/uploads/2024/06/ptit-banner.jpg" alt="Học viện Công nghệ Bưu chính Viễn thông" width="300" height="150">   
+            <p>Ngành AIot</p>
+        </section>
+        <section id="lienhe">
+            <h2>Liên hệ</h2>
+            <p>Email: hoangtrungdung@06022007@gmail.com</p>
+            <p>Điện thoại: 0374315918</p>
+        </section>
         <button id="btnDoiMau">Đổi màu nền</button>
     </main>
 
@@ -63,27 +80,34 @@
         <p>© 2026 - Bài tập thực hành 1</p>
     </footer>
 
-    <script>  
+    <script>
         var now = new Date();
         var gio = now.getHours();
         var theLoiChao = document.getElementById("loiChao");
 
-        if (gio < 12) {
-            theLoiChao.innerText = "Chào buổi sáng!";
-        } else if (gio < 18) {
-            theLoiChao.innerText = "Chào buổi chiều!";
-        } else {
-            theLoiChao.innerText = "Chào buổi tối!";
-        }     
-        var nutBam = document.getElementById("btnDoiMau");
-        nutBam.addEventListener("click", function() {
-            var body = document.getElementById("myBody");
-            if (body.style.backgroundColor == "lightblue") {
-                body.style.backgroundColor = "lightyellow";
+        if (theLoiChao) {
+            if (gio < 12) {
+                theLoiChao.innerText = "Chào buổi sáng!";
+            } else if (gio < 18) {
+                theLoiChao.innerText = "Chào buổi chiều!";
             } else {
-                body.style.backgroundColor = "lightblue";
+                theLoiChao.innerText = "Chào buổi tối!";
             }
-        });
+        }
+
+        var nutBam = document.getElementById("btnDoiMau");
+        if (nutBam) {
+            nutBam.addEventListener("click", function() {
+                var body = document.getElementById("myBody");
+                if (!body) return;
+
+                if (body.style.backgroundColor === "lightblue") {
+                    body.style.backgroundColor = "lightyellow";
+                } else {
+                    body.style.backgroundColor = "lightblue";
+                }
+            });
+        }
     </script>
 </body>
 </html>
